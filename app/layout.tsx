@@ -1,16 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "YVK",
@@ -19,25 +9,30 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="fr"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-       
-      <body className="min-h-full flex flex-col">
-       <header className="bg-zinc-50 dark:bg-black">
-          <p>YVK</p>
-          
+    <html lang="fr" className="h-full antialiased">
+      <body className="flex min-h-full flex-col">
+        <header className="flex items-center justify-between border-b bg-white px-6 py-4">
+          <Link href="/" className="text-xl font-bold text-amber-700">
+            YVK
+          </Link>
+          <nav className="flex gap-6 text-lime-700">
+            <Link href="/" className="hover:text-blue-600 ">Accueil</Link>
+            <Link href="/a-propos" className="hover:text-blue-600 ">À propos</Link>
+            <Link href="/destinations" className="hover:text-blue-600 ">Destinations</Link>
+            <Link href="/services" className="hover:text-blue-600 ">Services</Link>
+            <Link href="/contact" className="hover:text-blue-600 ">Contact</Link>
+          </nav>
         </header>
-        {children}
-        <footer>
-            <p>&copy; 2023 YVK</p>
-            <p>Treichville Avenu 16</p>
-            <p>0150314914</p>
-          </footer>
-        
+
+        {/* flex-1 : la page prend toute la hauteur, le footer reste en bas */}
+        <main className="flex-1">{children}</main>
+
+        <footer className="border-t bg-zinc-50 px-6 py-6 text-sm text-zinc-600">
+          <p>&copy; 2023 YVK</p>
+          <p>Treichville Avenu 16</p>
+          <p>0150314914</p>
+        </footer>
       </body>
-      
     </html>
   );
 }
