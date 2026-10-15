@@ -1,3 +1,4 @@
+
 import Link from 'next/link'
 import { destinations } from '../../data/destinations'
 
@@ -7,6 +8,7 @@ async function DestinationDetailPage({params }: PageProps<"/destinations/[slug]"
    
     const {slug} = await params
     const destination = destinations.find(destination=> destination.slug === slug)
+   
     if(!destination){
         return <p>Destination introuvable</p>
     }
