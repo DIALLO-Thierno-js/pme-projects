@@ -1,6 +1,7 @@
 
 import Link from 'next/link'
 import { destinations } from '../../data/destinations'
+import {notFound} from 'next/navigation'
 
 
 
@@ -10,7 +11,7 @@ async function DestinationDetailPage({params }: PageProps<"/destinations/[slug]"
     const destination = destinations.find(destination=> destination.slug === slug)
    
     if(!destination){
-        return <p>Destination introuvable</p>
+         notFound()
     }
     
   return (
